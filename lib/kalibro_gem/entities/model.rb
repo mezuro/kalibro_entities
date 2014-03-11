@@ -134,7 +134,7 @@ module KalibroGem
       end
 
       def self.is_valid?(field)
-        field.to_s[0] != '@' and field != :attributes! and (field.to_s =~ /xsi/).nil?
+        field.to_s[0] != '@' and field != :attributes! and (field =~ /attributes!/).nil? and (field.to_s =~ /xsi/).nil?
       end
 
       # TODO: Rename to entitie_name
