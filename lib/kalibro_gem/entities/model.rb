@@ -115,6 +115,10 @@ module KalibroGem
         response
       end
 
+      def errors=(errors)
+        self.kalibro_errors = errors
+      end
+
       protected
 
       def instance_variable_names

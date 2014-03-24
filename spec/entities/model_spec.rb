@@ -290,4 +290,12 @@ describe KalibroGem::Entities::Model do
       end
     end
   end
+
+  describe 'errors=' do
+    it 'should assign to kalibro_errors' do
+      subject.errors = "test"
+
+      subject.kalibro_errors.should eq('test')
+    end
+  end
 end
