@@ -87,7 +87,7 @@ describe KalibroGem::Entities::Model do
 
   describe 'to_hash' do
     it 'should return an empty hash' do
-      subject.to_hash.should be_empty
+      subject.to_hash.should eq({kalibro_errors: []})
     end
   end
 
