@@ -43,6 +43,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "factory_girl", "~> 4.4.0"
   spec.add_development_dependency 'coveralls'
 
-  spec.add_dependency "savon", "~> 2.3.3"
+  spec.add_dependency "savon", "~> 2.4.0"
   spec.add_dependency "activesupport", "~> 4.1.0.rc1"
 end
