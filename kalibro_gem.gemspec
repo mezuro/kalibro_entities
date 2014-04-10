@@ -44,5 +44,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'coveralls'
 
   spec.add_dependency "savon", "~> 2.4.0"
-  spec.add_dependency "activesupport", "~> 4.1.0.rc1"
+  spec.add_dependency "activesupport", ">= 2.2.1" #version in which underscore was introduced
 end
