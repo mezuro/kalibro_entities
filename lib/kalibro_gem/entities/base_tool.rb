@@ -5,7 +5,7 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -40,9 +40,11 @@ module KalibroGem
           raise KalibroGem::Errors::RecordNotFound
         end
       end
-      
+
       def self.all_names
-        request(:all_base_tool_names)[:base_tool_name].to_a
+        base_tool_name = request(:all_base_tool_names)[:base_tool_name]
+        return [base_tool_name] if base_tool_name.is_a?(String)
+        return base_tool_name.to_a
       end
 
       def self.all

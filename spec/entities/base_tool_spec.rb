@@ -5,7 +5,7 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -75,7 +75,7 @@ describe KalibroGem::Entities::BaseTool do
           expects(:request).
           with(:all_base_tool_names).
           returns({:base_tool_name => [base_tool.name, another_base_tool.name]})
-        
+
         KalibroGem::Entities::BaseTool.
           expects(:request).
           with(:get_base_tool, {:base_tool_name => base_tool.name}).
@@ -152,11 +152,11 @@ describe KalibroGem::Entities::BaseTool do
       end
     end
   end
-  
+
   describe 'metric' do
     subject { FactoryGirl.build(:base_tool) }
     let(:metric) { subject.supported_metrics.first }
-    
+
     it 'should return nil with an inexistent name' do
       subject.metric("fake name").should be_nil
     end
