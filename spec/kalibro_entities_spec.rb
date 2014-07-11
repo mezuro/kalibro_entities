@@ -31,22 +31,21 @@ describe KalibroGem do
     end
 
     describe 'configure' do
-      after(:all) {KalibroGem.configure(config)}
-
       it 'should set the address' do
         KalibroGem.configure({address: 'http://test.test'})
         expect(KalibroGem.config).to eq({address: 'http://test.test'})
+        KalibroGem.configure(config)
       end
     end
 
     describe 'configure_with' do
       context 'with an existent YAML' do
-        after(:all) {KalibroGem.configure(config)}
-
         it 'should set the config' do
           KalibroGem.configure_with('spec/savon/fixtures/config.yml')
 
           expect(KalibroGem.config).to eq({address: 'http://test1.test1'})
+
+          KalibroGem.configure(config)
         end
       end
 
