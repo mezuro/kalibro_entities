@@ -43,6 +43,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "factory_girl", "~> 4.4.0"
   spec.add_development_dependency 'coveralls'
 
-  spec.add_dependency "savon", "~> 2.5.1"
+  spec.add_dependency "savon", "~> 2.6.0"
+  spec.add_dependency 'rubyntlm', '~> 0.4.0' #necessary by savon >= 2.6.0
   spec.add_dependency "activesupport", ">= 2.2.1" #version in which underscore was introduced
 end
