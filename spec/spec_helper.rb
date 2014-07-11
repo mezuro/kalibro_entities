@@ -56,5 +56,5 @@ RSpec.configure do |config|
   config.order = "random"
 
   # Colors
-  config.color_enabled = true
+  config.color = true
 end

@@ -27,7 +27,7 @@ describe KalibroGem::Entities::BaseTool do
       end
 
       it 'should return empty array' do
-        KalibroGem::Entities::BaseTool.all_names.should be_empty
+        expect(KalibroGem::Entities::BaseTool.all_names).to be_empty
       end
     end
 
@@ -45,9 +45,9 @@ describe KalibroGem::Entities::BaseTool do
       it 'should return the two elements' do
         base_tool_names = KalibroGem::Entities::BaseTool.all_names
 
-        base_tool_names.size.should eq(2)
-        base_tool_names.first.should eq(base_tool_hash)
-        base_tool_names.last.should eq(another_base_tool_hash)
+        expect(base_tool_names.size).to eq(2)
+        expect(base_tool_names.first).to eq(base_tool_hash)
+        expect(base_tool_names.last).to eq(another_base_tool_hash)
       end
     end
   end
@@ -62,7 +62,7 @@ describe KalibroGem::Entities::BaseTool do
       end
 
       it 'should return empty array' do
-        KalibroGem::Entities::BaseTool.all_names.should be_empty
+        expect(KalibroGem::Entities::BaseTool.all_names).to be_empty
       end
     end
 
@@ -90,9 +90,9 @@ describe KalibroGem::Entities::BaseTool do
       it 'should return the two elements' do
         base_tools = KalibroGem::Entities::BaseTool.all
 
-        base_tools.size.should eq(2)
-        base_tools.first.name.should eq(base_tool.name)
-        base_tools.last.name.should eq(another_base_tool.name)
+        expect(base_tools.size).to eq(2)
+        expect(base_tools.first.name).to eq(base_tool.name)
+        expect(base_tools.last.name).to eq(another_base_tool.name)
       end
     end
   end
@@ -123,7 +123,7 @@ describe KalibroGem::Entities::BaseTool do
       end
 
       it 'should return a base_tool' do
-        KalibroGem::Entities::BaseTool.find_by_name(subject.name).name.should eq(subject.name)
+        expect(KalibroGem::Entities::BaseTool.find_by_name(subject.name).name).to eq(subject.name)
       end
     end
   end
@@ -141,14 +141,14 @@ describe KalibroGem::Entities::BaseTool do
     context 'supported_metric=' do
       it 'should set the value of the array of supported metrics' do
         subject.supported_metric = metric.to_hash
-        subject.supported_metric.first.name.should eq(metric.name)
+        expect(subject.supported_metric.first.name).to eq(metric.name)
       end
     end
 
     context 'supported_metrics' do
       it 'should return the array of the supported metrics' do
         subject.supported_metric = metric.to_hash
-        subject.supported_metrics.first.name.should eq(metric.name)
+        expect(subject.supported_metrics.first.name).to eq(metric.name)
       end
     end
   end
@@ -158,11 +158,11 @@ describe KalibroGem::Entities::BaseTool do
     let(:metric) { subject.supported_metrics.first }
 
     it 'should return nil with an inexistent name' do
-      subject.metric("fake name").should be_nil
+      expect(subject.metric("fake name")).to be_nil
     end
 
     it 'should return a metric with an existent name' do
-      subject.metric(metric.name).name.should eq(metric.name)
+      expect(subject.metric(metric.name).name).to eq(metric.name)
     end
   end
 end

@@ -20,14 +20,14 @@ describe KalibroGem::Entities::Reading do
   describe "id=" do
     it 'should set the id attribute as an integer' do
       subject.id = "44"
-      subject.id.should eq(44)
+      expect(subject.id).to eq(44)
     end
   end
 
   describe "grade=" do
     it 'should set the grade attribute as a float' do
       subject.grade = "44.7"
-      subject.grade.should eq(44.7)
+      expect(subject.grade).to eq(44.7)
     end
   end
 
@@ -45,7 +45,7 @@ describe KalibroGem::Entities::Reading do
 
         it 'should return a reading object' do
           response = KalibroGem::Entities::Reading.find reading.id
-          response.label.should eq(reading.label)
+          expect(response.label).to eq(reading.label)
         end
       end
 
@@ -79,8 +79,8 @@ describe KalibroGem::Entities::Reading do
 
       it 'should returns a list of readings that belongs to the given reading group' do
         response = KalibroGem::Entities::Reading.readings_of reading_group.id
-        response.first.label.should eq(reading.label)
-        response.last.label.should eq(reading.label)
+        expect(response.first.label).to eq(reading.label)
+        expect(response.last.label).to eq(reading.label)
       end
     end
 
@@ -98,7 +98,7 @@ describe KalibroGem::Entities::Reading do
       end
 
       it 'should list all the readings' do
-        KalibroGem::Entities::Reading.all.should include(subject)
+        expect(KalibroGem::Entities::Reading.all).to include(subject)
       end
     end
   end
@@ -116,9 +116,9 @@ describe KalibroGem::Entities::Reading do
     end
 
     it 'should make a request to save model with id and return true without errors' do
-      reading.save.should be(true)
-      reading.id.should eq(reading_id)
-      reading.kalibro_errors.should be_empty
+      expect(reading.save).to be(true)
+      expect(reading.id).to eq(reading_id)
+      expect(reading.kalibro_errors).to be_empty
     end
   end
 
@@ -131,7 +131,7 @@ describe KalibroGem::Entities::Reading do
       end
 
       it 'should return true' do
-        KalibroGem::Entities::Reading.exists?(subject.id).should be_true
+        expect(KalibroGem::Entities::Reading.exists?(subject.id)).to be_truthy
       end
     end
 
@@ -141,7 +141,7 @@ describe KalibroGem::Entities::Reading do
       end
 
       it 'should return false' do
-        KalibroGem::Entities::Reading.exists?(subject.id).should be_false
+        expect(KalibroGem::Entities::Reading.exists?(subject.id)).to be_falsey
       end
     end
   end

@@ -20,14 +20,14 @@ describe KalibroGem::Entities::MetricConfiguration do
   describe 'id=' do
     it 'should set the id as an Integer' do
       subject.id = "42"
-      subject.id.should eq(42)
+      expect(subject.id).to eq(42)
     end
   end
 
   describe 'reading_group_id=' do
     it 'should set the reading group id' do
       subject.reading_group_id = "1"
-      subject.reading_group_id.should eq(1)
+      expect(subject.reading_group_id).to eq(1)
     end
   end
 
@@ -43,14 +43,14 @@ describe KalibroGem::Entities::MetricConfiguration do
 
     it 'should convert the argument and set the metric' do
       subject.metric = metric.to_hash
-      subject.metric.should eq(metric)
+      expect(subject.metric).to eq(metric)
     end
   end
 
   describe 'weight=' do
     it 'should set the weight' do
       subject.weight = "10"
-      subject.weight.should eq(10)
+      expect(subject.weight).to eq(10)
     end
   end
 
@@ -65,7 +65,7 @@ describe KalibroGem::Entities::MetricConfiguration do
 
     it 'should set the attributes and save' do
       subject.update_attributes(metric_configuration.to_hash)
-      subject.code.should eq(metric_configuration.code)
+      expect(subject.code).to eq(metric_configuration.code)
     end
   end
 
@@ -73,7 +73,7 @@ describe KalibroGem::Entities::MetricConfiguration do
     subject {FactoryGirl.build(:metric_configuration)}
 
     it 'should not include the configuration_id' do
-      subject.to_hash[:configuration_id].should be_nil
+      expect(subject.to_hash[:configuration_id]).to be_nil
     end
   end
 
@@ -89,8 +89,8 @@ describe KalibroGem::Entities::MetricConfiguration do
       end
 
       it 'should return the metric_configuration' do
-        KalibroGem::Entities::MetricConfiguration.find(metric_configuration.id).
-          id.should eq(metric_configuration.id)
+        expect(KalibroGem::Entities::MetricConfiguration.find(metric_configuration.id).
+          id).to eq(metric_configuration.id)
       end
     end
 
@@ -125,8 +125,8 @@ describe KalibroGem::Entities::MetricConfiguration do
     it 'should return a array with a metric configuration' do
       metric_configurations = KalibroGem::Entities::MetricConfiguration.metric_configurations_of(configuration.id)
 
-      metric_configurations.should be_an(Array)
-      metric_configurations.first.id.should eq(metric_configuration.id)
+      expect(metric_configurations).to be_an(Array)
+      expect(metric_configurations.first.id).to eq(metric_configuration.id)
     end
   end
 
@@ -142,8 +142,8 @@ describe KalibroGem::Entities::MetricConfiguration do
     end
 
     it 'should make a request to save model with id and return true without errors' do
-      subject.save.should be(true)
-      subject.kalibro_errors.should be_empty
+      expect(subject.save).to be(true)
+      expect(subject.kalibro_errors).to be_empty
     end
   end
   
@@ -156,7 +156,7 @@ describe KalibroGem::Entities::MetricConfiguration do
       end
 
       it 'should return true' do
-        KalibroGem::Entities::MetricConfiguration.exists?(subject.id).should be_true
+        expect(KalibroGem::Entities::MetricConfiguration.exists?(subject.id)).to be_truthy
       end
     end
 
@@ -166,7 +166,7 @@ describe KalibroGem::Entities::MetricConfiguration do
       end
 
       it 'should return false' do
-        KalibroGem::Entities::MetricConfiguration.exists?(subject.id).should be_false
+        expect(KalibroGem::Entities::MetricConfiguration.exists?(subject.id)).to be_falsey
       end
     end
   end

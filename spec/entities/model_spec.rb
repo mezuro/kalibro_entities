@@ -22,17 +22,17 @@ describe KalibroGem::Entities::Model do
   describe 'new' do
     it 'should create a model from an empty hash' do
       subject = KalibroGem::Entities::Model.new {}
-      subject.kalibro_errors.should eq([])
+      expect(subject.kalibro_errors).to eq([])
     end
   end
 
   describe 'class_name' do
     it 'should be a String' do
-      subject.class.class_name.should be_a(String)
+      expect(subject.class.class_name).to be_a(String)
     end
 
     it 'should return Model' do
-      subject.class.class_name.should eq('Model')
+      expect(subject.class.class_name).to eq('Model')
     end
   end
 
@@ -40,13 +40,13 @@ describe KalibroGem::Entities::Model do
     it 'should return the class_name' do
       endpoint = 'test'
       KalibroGem::Entities::Model.expects(:class_name).returns(endpoint)
-      KalibroGem::Entities::Model.endpoint.should eq(endpoint)
+      expect(KalibroGem::Entities::Model.endpoint).to eq(endpoint)
     end
   end
 
   describe 'client' do
     it 'returns a Savon::Client' do
-      KalibroGem::Entities::Model.client('Model').should be_a(Savon::Client)
+      expect(KalibroGem::Entities::Model.client('Model')).to be_a(Savon::Client)
     end
   end
 
@@ -63,8 +63,8 @@ describe KalibroGem::Entities::Model do
           expects(:client).
           with(any_parameters).
           returns(client)
-        KalibroGem::Entities::Model.
-          request(:project_exists, {project_id: 1})[:exists].should eq(false)
+        expect(KalibroGem::Entities::Model.
+          request(:project_exists, {project_id: 1})[:exists]).to eq(false)
       end
     end
 
@@ -79,36 +79,36 @@ describe KalibroGem::Entities::Model do
           expects(:client).
           with(any_parameters).
           returns(client)
-        Child.
-          request(:project_exists, {project_id: 1})[:exists].should eq(false)
+        expect(Child.
+          request(:project_exists, {project_id: 1})[:exists]).to eq(false)
       end
     end
   end
 
   describe 'to_hash' do
     it 'should return an empty hash' do
-      subject.to_hash.should eq({kalibro_errors: []})
+      expect(subject.to_hash).to eq({kalibro_errors: []})
     end
   end
 
   describe 'to_object' do
     it 'should return an Object with an empty hash' do
-      KalibroGem::Entities::Model.to_object({}).should eq(FactoryGirl.build(:model))
+      expect(KalibroGem::Entities::Model.to_object({})).to eq(FactoryGirl.build(:model))
     end
 
     it "should remain an object if it isn't a Hash" do
-      KalibroGem::Entities::Model.to_object(Object.new).should be_an(Object)
+      expect(KalibroGem::Entities::Model.to_object(Object.new)).to be_an(Object)
     end
   end
 
   describe 'to_objects_array' do
     it 'should convert [{}] to [Model]' do
-      KalibroGem::Entities::Model.to_objects_array({}).should eq([FactoryGirl.build(:model)]) 
+      expect(KalibroGem::Entities::Model.to_objects_array({})).to eq([FactoryGirl.build(:model)]) 
     end
 
     it 'should remain an array if it already is one' do
       object = Object.new
-      KalibroGem::Entities::Model.to_objects_array([object]).should eq([object]) 
+      expect(KalibroGem::Entities::Model.to_objects_array([object])).to eq([object]) 
     end
   end
 
@@ -121,8 +121,8 @@ describe KalibroGem::Entities::Model do
 
     context "when it doesn't have the method id=" do
       it 'should make a request to save model with id returning false and an error' do
-        subject.save.should be(false)
-        subject.kalibro_errors[0].should be_a(NoMethodError)
+        expect(subject.save).to be(false)
+        expect(subject.kalibro_errors[0]).to be_a(NoMethodError)
       end
     end
 
@@ -135,8 +135,8 @@ describe KalibroGem::Entities::Model do
       end
 
       it 'should make a request to save model with id and return true without errors' do
-        subject.save.should be(true)
-        subject.kalibro_errors.should be_empty
+        expect(subject.save).to be(true)
+        expect(subject.kalibro_errors).to be_empty
       end
     end
   end
@@ -160,14 +160,14 @@ describe KalibroGem::Entities::Model do
     end
 
     it 'should instantiate and save the model' do
-      (KalibroGem::Entities::Model.create {}).should eq(subject)
+      expect(KalibroGem::Entities::Model.create {}).to eq(subject)
     end
   end
 
   describe '==' do
     context 'comparing objects from different classes' do
       it 'should return false' do
-        subject.should_not eq(Object.new)
+        expect(subject).not_to eq(Object.new)
       end
     end
 
@@ -180,13 +180,13 @@ describe KalibroGem::Entities::Model do
       end 
 
       it 'should return false' do
-        subject.should_not eq(another_model)
+        expect(subject).not_to eq(another_model)
       end
     end
 
     context 'with two empty models' do
       it 'should return true' do
-        subject.should eq(FactoryGirl.build(:model))
+        expect(subject).to eq(FactoryGirl.build(:model))
       end
     end
   end
@@ -201,7 +201,7 @@ describe KalibroGem::Entities::Model do
       end
 
       it 'should return false' do
-        KalibroGem::Entities::Model.exists?(0).should eq(false)
+        expect(KalibroGem::Entities::Model.exists?(0)).to eq(false)
       end
     end
 
@@ -214,7 +214,7 @@ describe KalibroGem::Entities::Model do
       end
 
       it 'should return false' do
-        KalibroGem::Entities::Model.exists?(42).should eq(true)
+        expect(KalibroGem::Entities::Model.exists?(42)).to eq(true)
       end
     end
   end
@@ -241,7 +241,7 @@ describe KalibroGem::Entities::Model do
       end
 
       it 'should return an empty model' do
-        KalibroGem::Entities::Model.find(42).should eq(subject)
+        expect(KalibroGem::Entities::Model.find(42)).to eq(subject)
       end
     end
   end
@@ -257,7 +257,7 @@ describe KalibroGem::Entities::Model do
 
       it 'should remain with the errors array empty' do
         subject.destroy
-        subject.kalibro_errors.should be_empty
+        expect(subject.kalibro_errors).to be_empty
       end
     end
 
@@ -272,7 +272,7 @@ describe KalibroGem::Entities::Model do
       it "should have an exception inside it's errors" do
         subject.destroy
 
-        subject.kalibro_errors[0].should be_an(Exception)
+        expect(subject.kalibro_errors[0]).to be_an(Exception)
       end
     end
   end
@@ -280,13 +280,13 @@ describe KalibroGem::Entities::Model do
   describe 'create_objects_array_from_hash' do
     context 'with nil' do
       it 'should return an empty array' do
-        KalibroGem::Entities::Model.create_objects_array_from_hash(nil).should eq([])
+        expect(KalibroGem::Entities::Model.create_objects_array_from_hash(nil)).to eq([])
       end
     end
 
     context 'with a Hash' do
       it 'should return the correspondent object to the given hash inside of an Array' do
-        KalibroGem::Entities::Model.create_objects_array_from_hash({}).should eq([subject])
+        expect(KalibroGem::Entities::Model.create_objects_array_from_hash({})).to eq([subject])
       end
     end
   end
@@ -295,7 +295,7 @@ describe KalibroGem::Entities::Model do
     it 'should assign to kalibro_errors' do
       subject.errors = "test"
 
-      subject.kalibro_errors.should eq('test')
+      expect(subject.kalibro_errors).to eq('test')
     end
   end
 end

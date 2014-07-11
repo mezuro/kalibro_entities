@@ -24,7 +24,7 @@ describe KalibroGem do
 
     describe 'config' do
       it 'should return the default configuration' do
-        KalibroGem.config.should eq({
+        expect(KalibroGem.config).to eq({
                                           address: "http://localhost:8080/KalibroService/"
                                         })
       end
@@ -35,7 +35,7 @@ describe KalibroGem do
 
       it 'should set the address' do
         KalibroGem.configure({address: 'http://test.test'})
-        KalibroGem.config.should eq({address: 'http://test.test'})
+        expect(KalibroGem.config).to eq({address: 'http://test.test'})
       end
     end
 
@@ -46,7 +46,7 @@ describe KalibroGem do
         it 'should set the config' do
           KalibroGem.configure_with('spec/savon/fixtures/config.yml')
 
-          KalibroGem.config.should eq({address: 'http://test1.test1'})
+          expect(KalibroGem.config).to eq({address: 'http://test1.test1'})
         end
       end
 
@@ -58,7 +58,7 @@ describe KalibroGem do
 
         it 'should keep the defaults' do
           KalibroGem.configure_with('spec/savon/fixtures/inexistent_file.yml')
-          KalibroGem.config.should eq({address: "http://localhost:8080/KalibroService/"})
+          expect(KalibroGem.config).to eq({address: "http://localhost:8080/KalibroService/"})
         end
 
         it 'should log an warning' do
@@ -76,7 +76,7 @@ describe KalibroGem do
 
         it 'should keep the defaults' do
           KalibroGem.configure_with('spec/savon/fixtures/invalid_config.yml')
-          KalibroGem.config.should eq({address: "http://localhost:8080/KalibroService/"})
+          expect(KalibroGem.config).to eq({address: "http://localhost:8080/KalibroService/"})
         end
 
         it 'should log an warning' do
@@ -91,7 +91,7 @@ describe KalibroGem do
   context 'Logger' do
     describe 'logger' do
       it 'should return the default logger' do
-        KalibroGem.logger.should be_a(Logger)
+        expect(KalibroGem.logger).to be_a(Logger)
       end
     end
 
@@ -101,7 +101,7 @@ describe KalibroGem do
 
         KalibroGem.logger = logger
 
-        KalibroGem.logger.should eq(logger)
+        expect(KalibroGem.logger).to eq(logger)
       end
     end
   end
